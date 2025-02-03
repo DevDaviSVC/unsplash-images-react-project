@@ -4,12 +4,13 @@ import { useSearchImages } from "../react-query/reactQueryHooks";
 const SearchForm = () => {
   const [query, setQuery] = useState("");
 
- const {searchImages} = useSearchImages();
-  
+  const { searchImages } = useSearchImages();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    searchImages(query);
+    if (query !== "") {
+      searchImages(query);
+    }
   };
 
   return (

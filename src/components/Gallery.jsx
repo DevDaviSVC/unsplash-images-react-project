@@ -20,9 +20,9 @@ const Gallery = () => {
 
   return (
     <div className="image-container">
-      {data.map(image => (
+      {data.length > 0 ? data.map(image => (
         <img src={image.urls.small} alt={image.alt_description} className="img" key={image.id} />
-      ))}
+      )) : <h2>No results found...</h2>}
     </div>
   )
 }

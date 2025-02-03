@@ -343,7 +343,7 @@ Search Form
 .search-input {
   border-color: var(--grey-300);
   transition: var(--darkModeTransition);
-  color: var(--textColor);
+  color: var(--black);
   border-radius: 0;
   border-style: solid;
 

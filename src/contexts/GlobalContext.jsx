@@ -5,19 +5,21 @@ const GlobalContext = createContext();
 export const useGlobalContext = () => useContext(GlobalContext);
 
 export const GlobalContextProvider = ({children}) => {
-    const [darkTheme, setDarkTheme] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(() => {
+    const { body } = document;
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      body.classList.add("dark-theme");
+      return true;
+    }
+    return false;
+  });
 
-    useEffect(() => {
-        if (darkTheme) {
-            document.body.classList.add("dark-theme");
-        } else {
-            document.body.classList.remove("dark-theme");
-        }
-    }, [darkTheme]);
-
-    const toggleDarkTheme = () => {
-        setDarkTheme(currentState => !currentState);
-    };
+  const toggleDarkTheme = () => {
+    setDarkTheme((currentState) => {
+      document.body.classList.toggle("dark-theme", !currentState);
+      return !currentState;
+    });
+  };
 
     const values = {
         darkTheme,
